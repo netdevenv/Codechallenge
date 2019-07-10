@@ -1,0 +1,8 @@
+.nav-link {
+    display: block !important;
+     padding: 0.5rem 0rem!important;
+}
+.nav-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

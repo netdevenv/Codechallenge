@@ -1,0 +1,50 @@
+<br>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="container">
+            <div class="table-responsive ">
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th (click)="sorting('login')" style="cursor:pointer">
+                                login
+                                <span class="glyphicon sort-icon" *ngIf="key =='login'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th (click)="sorting('avatar_url')" style="cursor:pointer">
+                                Avatar URL
+                                <span class="glyphicon sort-icon" *ngIf="key =='avatar_url'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th (click)="sorting('html_url')" style="cursor:pointer">
+                                Profile URL
+                                <span class="glyphicon sort-icon" *ngIf="key =='html_url'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let val of displayData | orderBy: key : reverse | filter:filter;let idx = index">
+
+                            <td>{{val.login}}</td>
+                            <td (click)="onCellClick(val)"> <img src="{{ val.avatar_url }}" class="img-circle"
+                                    alt="Cinque Terre" width="30" height="30"> </td>
+                            <td><a href="{{val.html_url}}" target="blank">{{val.html_url}}</a></td>
+                        </tr>
+                        <tr *ngIf="!displayData?.length > 0">
+                            <td class="space" colspan="7">No data to dispaly </td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+                <pagination [boundaryLinks]="true" [totalItems]="totalRecords" [(ngModel)]="pageNo"
+                    (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"
+                    class="pagination-sm ng-star-inserted" previousText="&lsaquo;" nextText="&rsaquo;"
+                    firstText="&laquo;" lastText="&raquo;" [maxSize]="5" [boundaryLinks]="true" [rotate]="false">
+                </pagination>
+            </div>
+        </div>
+    </div>
+</div>
